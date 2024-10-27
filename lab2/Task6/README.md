@@ -1,0 +1,1 @@
+Файл с котировками взят с сайта https://www.kaggle.com/datasets/borismarjanovic/price-volume-data-for-all-us-stocks-etfs
