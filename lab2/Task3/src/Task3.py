@@ -1,6 +1,6 @@
 import psutil
 import time
-
+from utils import read_data, write_data, input_path, output_path
 def merge_and_count(arr, temp_arr, left, mid, right):
     i = left    # Индекс для левой части
     j = mid + 1 # Индекс для правой части
@@ -53,9 +53,7 @@ if __name__ == '__main__':
     mem_before = psutil.Process().memory_info().rss
 
     # Чтение данных из входного файла
-    with open('Task3/txtf/input.txt', 'r') as f:
-        n = int(f.readline().strip())
-        arr = list(map(int, f.readline().strip().split()))
+    n, arr = read_data('Task3' + input_path, 10**5, 10**9)
 
     # Замер времени
     start_time = time.time()

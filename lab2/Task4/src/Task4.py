@@ -1,5 +1,6 @@
 import psutil
 import time
+from utils import write_data, output_path
 
 def binary_search(arr, target):
     left, right = 0, len(arr) - 1
@@ -54,8 +55,7 @@ if __name__ == '__main__':
     mem_after = psutil.Process().memory_info().rss
 
     # Запись результатов в выходной файл
-    with open('Task4/txtf/output.txt', 'w') as f:
-        f.write(' '.join(map(str, results)))
+    write_data('Task4' + output_path, results)
 
     print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
     

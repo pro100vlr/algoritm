@@ -14,6 +14,15 @@
 - cvs
 - datetime
 
+### Навигация
+
+- [ ] [Задание №1 - 'Сортировка слиянием'](Task1/src/Task1.py)
+- [ ] [Задание №3 - 'Число инверсий'](Task3/src/Task3.py)
+- [ ] [Задание №4 - 'Бинарный поиск'](Task4/src/Task4.py)
+- [ ] [Задание №5 - 'Представитель большинства'](Task5/src/Task5.py)
+- [ ] [Задание №6 - 'Поиск максимальной прибыли'](Task6/src/Task6.py)
+- [ ] [Задание №7 - 'Поиск максимального подмассива за линейное время'](Task7/src/Task7.py)
+
 ## Описание структуры проекта:
 
 src/ — исходные коды (для каждой задачи в отдельной папке с названием Task1, Task2 и т.д.)   
@@ -26,14 +35,14 @@ txtf/ - входные и выходные данные
 
 `git clone https://github.com/pro100vlr/algoritm.git`   
 `cd algoritm/lab2/`  
-`python3 Task1/src/Task1.py`   
+`python3 -m Task1.src.Task1`   
 
 Для запуска скриптов к другим задачам заменить Task1 на Task{номер задачи}.   
 
 ### Запуск тестов:   
    
 `git clone https://github.com/pro100vlr/algoritm.git`   
-`cd algoritm/lab1/`  
-`python -m Task1.tests.test_task1`   
+`cd algoritm/lab2/`  
+`python3 -m Task1.tests.test_task1`   
 
 Для запуска тестовых скриптов к другим задачам заменить Task1 и test_task1 на Task{номер задачи} и test_task{номер задачи}.

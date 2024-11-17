@@ -1,5 +1,6 @@
 import psutil
 import time
+from utils import read_data, write_data, input_path, output_path
 
 def merge_sort(arr):
     if len(arr) > 1:
@@ -43,15 +44,7 @@ if __name__ == "__main__":
     # Измеряем память
     mem_before = psutil.Process().memory_info().rss
 
-    with open('Task1/txtf/input.txt', 'r') as file:
-        n = int(file.readline().strip())
-        if not(n >= 1 or n <= 2*10**4):
-            print("Неверное значение переменных")
-            exit()
-        arr = list(map(int, file.readline().strip().split()))
-        if not all(abs(x) <= 10**9 for x in arr):
-            print("Элементы массива выходят за пределы допустимого диапазона")
-            exit()
+    n, arr = read_data('Task1' + input_path, 2*10**4, 10**9)
 
     # Замер времени
     start_time = time.time()
@@ -63,6 +56,5 @@ if __name__ == "__main__":
     end_time = time.time()
     mem_after = psutil.Process().memory_info().rss
 
-    with open('Task1/txtf/output.txt', 'w') as file:
-        file.write(' '.join(map(str, sorted_arr)) + '\n')
+    write_data('Task1' + output_path, sorted_arr)
     print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")

@@ -2,11 +2,7 @@ from Task1.src.Task1 import merge_sort
 import psutil
 import time
 
-def load_data(file_path):
-    with open(file_path, 'r') as f:
-        n = int(f.readline().strip())
-        array = list(map(int, f.readline().strip().split()))
-        return n, array
+from utils import read_data
 
 time_list = []
 mem_list = []
@@ -14,7 +10,8 @@ for input in ['input_average.txt', 'input_worst.txt', 'input_best.txt']:
     # Измеряем память перед сортировкой
     mem_before = psutil.Process().memory_info().rss
 
-    n, input_array = load_data(f'Task1/tests/{input}')
+    n, input_array = read_data(f'Task1/tests/{input}', 10**5, 10**9)
+    
     expected = sorted(input_array)
 
     # Замер времени перед сортировкой

@@ -24,7 +24,12 @@ if __name__ == '__main__':
     with open('Task5/txtf/input.txt', 'r') as file:
         n = int(file.readline().strip())     ## ДОПИСАТЬ ОГРАНИЧЕНИЯ ИЗ УСЛОВИЯ ЗАДАЧИ
         arr = list(map(int, file.readline().strip().split()))
-
+        if not(n >= 1 and n <= 10**5):
+            print('Количество элементов в массиве выходит за пределы допустимого диапазона')
+            exit()
+        if not(all(0 <= x <= 10**9 for x in arr)):
+            print('Элементы массива выходят за пределы допустимого диапазона')
+            exit()
     # Замер времени
     start_time = time.time()
     # Поиск представителя большинства
