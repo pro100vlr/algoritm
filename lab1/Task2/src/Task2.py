@@ -1,5 +1,6 @@
 import psutil
 import time
+from utils import read_data, write_data, input_path, output_path
 
 def insertion_sort_with_position_tracking(arr, n):
     # Массив для отслеживания индексов перемещения элементов
@@ -23,20 +24,18 @@ def insertion_sort_with_position_tracking(arr, n):
     return positions, arr
 
 
-
 # Измеряем память
 mem_before = psutil.Process().memory_info().rss
-# Чтение данных из файла input.txt
-with open('Task2/txtf/input.txt', 'r') as f:
-    n = int(f.readline().strip())  # Число элементов
-    arr = list(map(int, f.readline().strip().split()))  # Массив чисел
+
+n, array = read_data('Task2' + input_path)
 
 start_time = time.time()
 # Вызов функции сортировки
-positions, sorted_arr = insertion_sort_with_position_tracking(arr, n)
+positions, sorted_arr = insertion_sort_with_position_tracking(array, n)
 
 end_time = time.time()
 mem_after = psutil.Process().memory_info().rss
+
 
 # Запись результатов в файл output.txt
 with open('Task2/txtf/output.txt', 'w') as f:

@@ -1,5 +1,6 @@
 import psutil
 import time
+from utils import read_data, write_data, input_path, output_path
 
 def insertion_sort_descending(arr, n):
 
@@ -20,13 +21,10 @@ if __name__ == "__main__":
     # Измеряем память
     mem_before = psutil.Process().memory_info().rss
 
-    # Чтение данных из файла input.txt
-    with open('Task3/txtf/input.txt', 'r') as f:
-        n = int(f.readline().strip())  # Первое число - количество элементов
-        if n < 1 or n > 10**3:
-            print("Неверное значение переменных")
-            exit()
-        array = list(map(int, f.readline().strip().split()))  # Чтение массива
+    n, array = read_data('Task3' + input_path)
+    if n < 1 or n > 10**3:
+        print("Неверное значение переменных")
+        exit()
 
     
     # Замер времени
@@ -37,8 +35,6 @@ if __name__ == "__main__":
     end_time = time.time()
     mem_after = psutil.Process().memory_info().rss
 
-    # Запись результата в файл output.txt
-    with open('Task3/txtf/output.txt', 'w') as f:
-        f.write(' '.join(map(str, sorted_array)))
+    write_data('Task3' + output_path, sorted_array)
 
     print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
