@@ -1,0 +1,13 @@
+import unittest
+from Task3.src.Task3 import merge_sort_and_count
+
+class Test(unittest.TestCase):
+    def test_case_1(self):
+        arr = [1, 8, 2, 1, 4, 7, 3, 2, 3, 6]
+        n = 10
+        temp_arr = [0] * n
+        expected_output = 17
+        self.assertEqual(merge_sort_and_count(arr, temp_arr, 0, n - 1), expected_output)
+
+if __name__ == "__main__":
+   unittest.main()

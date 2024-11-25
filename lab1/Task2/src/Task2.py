@@ -23,23 +23,23 @@ def insertion_sort_with_position_tracking(arr, n):
 
     return positions, arr
 
+if __name__ == "__main__":
+    # Измеряем память
+    mem_before = psutil.Process().memory_info().rss
 
-# Измеряем память
-mem_before = psutil.Process().memory_info().rss
+    n, array = read_data('Task2' + input_path)
 
-n, array = read_data('Task2' + input_path)
+    start_time = time.time()
+    # Вызов функции сортировки
+    positions, sorted_arr = insertion_sort_with_position_tracking(array, n)
 
-start_time = time.time()
-# Вызов функции сортировки
-positions, sorted_arr = insertion_sort_with_position_tracking(array, n)
-
-end_time = time.time()
-mem_after = psutil.Process().memory_info().rss
+    end_time = time.time()
+    mem_after = psutil.Process().memory_info().rss
 
 
-# Запись результатов в файл output.txt
-with open('Task2/txtf/output.txt', 'w') as f:
-    f.write(' '.join(map(str, positions)) + '\n')  # Массив индексов
-    f.write(' '.join(map(str, sorted_arr)) + '\n')  # Отсортированный массив
+    # Запись результатов в файл output.txt
+    with open('Task2/txtf/output.txt', 'w') as f:
+        f.write(' '.join(map(str, positions)) + '\n')  # Массив индексов
+        f.write(' '.join(map(str, sorted_arr)) + '\n')  # Отсортированный массив
 
-print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
