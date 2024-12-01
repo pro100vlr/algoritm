@@ -43,3 +43,9 @@
 `git clone https://github.com/pro100vlr/algoritm.git`   
 `cd algoritm/lab1/`  
 `python3 -m Task4.src.Task4`   
+
+### Запуск теста:   
+   
+`git clone https://github.com/pro100vlr/algoritm.git`   
+`cd algoritm/lab1/`  
+`python -m Task4.tests.test_task4`

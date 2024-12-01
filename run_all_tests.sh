@@ -1,6 +1,6 @@
 #!/bin/bash 
 start_dir=$(pwd)
-for lab in lab{1..4};
+for lab in lab{1..5};
 do
 lab_folder=$lab
 echo "$lab_folder"

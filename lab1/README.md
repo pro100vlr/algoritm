@@ -35,20 +35,20 @@ src/ — исходные коды (для каждой задачи в отде
 tests/ — тесты и тестовые данные к задачам (там, где требуются)    
 txtf/ - входные и выходные данные
 
-## Инструкция по запуску   
+## Запуск проекта 
 
-### Запуск основных скриптов:   
+1. Клонируйте репозиторий:
+  
+`git clone https://github.com/pro100vlr/algoritm.git`  
 
-`git clone https://github.com/pro100vlr/algoritm.git`   
+2. Перейдите в папку с проектом:
+
 `cd algoritm/lab1/`  
-`python3 -m Task1.src.Task1`   
 
-Для запуска скриптов к другим задачам заменить Task1 на Task{номер задачи}.   
+3. Запуск всех задач:
+`bash ../run_all_one_lab.sh`
 
-### Запуск тестов:   
+4. Запуск всех тестов задач:
+`bash ../run_all_tests_one_lab.sh` 
+
    
-`git clone https://github.com/pro100vlr/algoritm.git`   
-`cd algoritm/lab1/`  
-`python -m Task1.tests.test_task1`   
-
-Для запуска тестовых скриптов к другим задачам заменить Task1 и test_task1 на Task{номер задачи} и test_task{номер задачи}.

@@ -1,18 +1,39 @@
 import unittest
 from Task4.src.Task4 import check_brackets
 class Test(unittest.TestCase):
-    def test_case_1(self):
+    def test_check_brackets1(self):
+        # given
         sequence = '[]'
         expected_output = 'Success'
-        self.assertEqual(check_brackets(sequence), expected_output)
-    def test_case_2(self):
+
+        # then
+        result = check_brackets(sequence)
+
+        # when
+        self.assertEqual(result, expected_output)
+        print('Success')
+    def test_check_brackets2(self):
+        # given
         sequence = '{'
         expected_output = 1
-        self.assertEqual(check_brackets(sequence), expected_output)
-    def test_case_3(self):
+
+        # then
+        result = check_brackets(sequence)
+
+        # when
+        self.assertEqual(result, expected_output)
+        print('Success')
+    def test_check_brackets3(self):
+        # given
         sequence = 'foo(bar);'
         expected_output = 'Success'
-        self.assertEqual(check_brackets(sequence), expected_output)
+
+        # then
+        result = check_brackets(sequence)
+
+        # when
+        self.assertEqual(result, expected_output)
+        print('Success')
 
 if __name__ == "__main__":
     unittest.main()

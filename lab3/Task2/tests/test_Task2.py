@@ -1,13 +1,13 @@
 import unittest
-from Task8.src.Task8 import evaluate_postfix
+from Task2.src.Task2 import anti_quick_sort
 class Test(unittest.TestCase):
-    def test_evaluate_postfix(self):
+    def test_anti_quick_sort(self):
         # given
-        expression = ['8', '9', '+', '1', '7', '-', '*']
-        expected_output = -102
+        n = 3
+        expected_output = [1, 3, 2]
 
         # then
-        result = evaluate_postfix(expression)
+        result = anti_quick_sort(n)
 
         # when
         self.assertEqual(result, expected_output)

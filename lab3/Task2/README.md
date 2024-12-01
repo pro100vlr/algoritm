@@ -51,3 +51,9 @@ qsort(0, n - 1)`
 `git clone https://github.com/pro100vlr/algoritm.git`   
 `cd algoritm/lab3/`  
 `python3 -m Task2.src.Task2`   
+
+### Запуск теста:   
+   
+`git clone https://github.com/pro100vlr/algoritm.git`   
+`cd algoritm/lab3/`  
+`python -m Task2.tests.test_task2`

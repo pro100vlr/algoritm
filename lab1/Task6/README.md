@@ -38,3 +38,9 @@ Bubble_Sort, a n - длина массива A.
 `git clone https://github.com/pro100vlr/algoritm.git`   
 `cd algoritm/lab1/`  
 `python -m Task6.tests.test_task6`  
+
+### Запуск теста:   
+   
+`git clone https://github.com/pro100vlr/algoritm.git`   
+`cd algoritm/lab1/`  
+`python -m Task6.tests.test_task6`

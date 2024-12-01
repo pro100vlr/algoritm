@@ -49,3 +49,9 @@ h из его/её Np статей цитируются как минимум h 
 `git clone https://github.com/pro100vlr/algoritm.git`
 `cd algoritm/lab3/`  
 `python3 -m Task5.src.Task5` 
+
+### Запуск теста:   
+   
+`git clone https://github.com/pro100vlr/algoritm.git`   
+`cd algoritm/lab3/`  
+`python -m Task5.tests.test_task5`
