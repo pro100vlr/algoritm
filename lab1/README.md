@@ -46,9 +46,11 @@ txtf/ - входные и выходные данные
 `cd algoritm/lab1/`  
 
 3. Запуск всех задач:
+   
 `bash ../run_all_one_lab.sh`
 
 4. Запуск всех тестов задач:
+   
 `bash ../run_all_tests_one_lab.sh` 
 
    
