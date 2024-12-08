@@ -49,7 +49,7 @@ def measure(func, *args):
     """
     tracemalloc.start()  # Старт отслеживания памяти
     start = time.perf_counter()  # Точнее, чем time.time() для замеров
-    result = func(*args)  # Выполняем функцию
+    _ = func(*args)  # Выполняем функцию
     elapsed_time = time.perf_counter() - start  # Конец замера времени
 
     _, peak_memory = tracemalloc.get_traced_memory()  # Пиковая память
@@ -57,5 +57,7 @@ def measure(func, *args):
 
     # Печатаем результаты
     print(f"Время работы: {elapsed_time:.6f} с")
-    print(f"Использование памяти: {peak_memory / 1024**2:.6f} МБ")
+    print(f"Использование памяти: {peak_memory / 1024**2:.6f} МБ\n")
+
+    return elapsed_time, peak_memory / 1024**2
 

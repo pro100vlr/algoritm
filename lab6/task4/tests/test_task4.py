@@ -1,14 +1,14 @@
 import unittest
-from lab6.task1.src.task1 import process_operations
+from lab6.task4.src.task4 import process_operations
 from utils import measure
 
 class Test(unittest.TestCase):
     def test_should_process_operations_successful(self):
         # given
         
-        operations = [['A', '2'], ['A', '5'], ['A', '3'], ['?', '2'], ['?', '4'], ['A', '2'], ['D', '2'], ['?', '2']]
-        expected_output = ['Y', 'N', 'N']
-        expected_time = 2
+        operations = [['put', 'zero', 'a'], ['put', 'one', 'b'], ['put', 'two', 'c'], ['put', 'three', 'd'], ['put', 'four', 'e'], ['get', 'two'], ['prev', 'two'], ['next', 'two'], ['delete', 'one'], ['delete', 'three'], ['get', 'two'], ['prev', 'two'], ['next', 'two'], ['next', 'four']]
+        expected_output = ['c', 'b', 'd', 'c', 'a', 'e', '<none>']
+        expected_time = 4
         expected_memory = 256
 
         # then
