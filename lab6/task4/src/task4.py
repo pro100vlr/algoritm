@@ -67,9 +67,15 @@ def process_operations(operations):
 if __name__ == "__main__":
     # Считываем данные из файла
     data = read_file_data(lab_task + input_path)
+    n = data[0]
+    assert n <= 10**5, "Слишком много операций!"
+
     # Преобразуем строки в список операций
     operations = [line.split() for line in data[1:]]
-    
+    for operation in operations:
+        if not(len(operation[0]) >= 1 and len(operation[1]) >= 1 and len(operation[0]) <=20 and len(operation[1]) <= 20):
+            print("Количество символов в паре(ключ, значение) должно быть от 1 до 20!")
+            exit()
     # Обрабатываем операции и получаем результат
     result = '\n'.join(process_operations(operations))
 

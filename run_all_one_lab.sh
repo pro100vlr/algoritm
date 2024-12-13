@@ -1,5 +1,8 @@
 #!/bin/bash 
-for script in Task*/src/*.py
+
+lab=$1
+
+for script in $lab/task*/src/*.py
 do
 run_script=$(echo "$script" | rev | cut -c 4- | rev)
 run_script1=${run_script//\//.}

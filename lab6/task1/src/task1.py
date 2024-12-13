@@ -22,6 +22,8 @@ def process_operations(operations):
 if __name__ == "__main__":    
 
     data = read_file_data(lab_task + input_path)
+    n = data[0]
+    assert n <= 10**5, "Слишком много операций!"
     operations = [line.split() for line in data[1:]]
     
     result = '\n'.join(process_operations(operations))
