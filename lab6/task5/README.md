@@ -23,20 +23,6 @@
 | Obama 8  |          |
 | McCain 1 |          |
 
-| Input     | Output    |
-|-----------|-----------|
-| ivanov 100| ivanov 900|
-| ivanov 500| petr 70   |
-| ivanov 300| tourist 3 |
-| petr 70   |           |
-| tourist 1 |           |
-| tourist 2 |           |
-
-| Input    | Output   |
-|----------|----------|
-| bur 1    | bur 1    |
-
-
 ## Ограничения по времени и памяти
 
 - Ограничение по времени. 2сек.
