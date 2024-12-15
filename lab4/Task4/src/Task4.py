@@ -1,5 +1,6 @@
-import psutil
-import time
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab4/task4"
 
 def check_brackets(sequence):
     stack = []
@@ -29,25 +30,17 @@ def check_brackets(sequence):
 
 if __name__ == "__main__":
 
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
+    data = read_file_data(lab_task + input_path)
+    
+    sequence = data[0]
 
-    with open('Task4/txtf/input.txt', 'r') as file:
-        sequence = file.readline().strip()
-        if not(1 <= len(sequence) <= 10**5):
-            print('Количество элементов в массиве выходит за пределы допустимого диапазона')
-            exit()
+    assert 1 <= len(sequence) <= 10**5, "Cлишком длинная последовательность"
 
-    # Замер времени
-    start_time = time.time()
+    result = str(check_brackets(sequence))
+   
+    write_data(lab_task + output_path, result)
 
-    result = check_brackets(sequence)
+    print_input_output(lab_task + input_path, result)
 
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
-
-    with open('Task4/txtf/output.txt', 'w') as file:
-        file.write(str(result) + "\n")
-
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+    measure(check_brackets, sequence)
 

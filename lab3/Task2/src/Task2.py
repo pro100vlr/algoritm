@@ -1,6 +1,6 @@
-import psutil
-import time
-from utils import write_data, output_path
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab3/task2"
 
 def anti_quick_sort(n):    
     arr = list(range(1, n + 1))
@@ -10,23 +10,18 @@ def anti_quick_sort(n):
 # Чтение данных из файла input.txt
 
 if __name__ == "__main__":
-
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
-
-    with open('Task2/txtf/input.txt', 'r') as f:
-        n = int(f.readline().strip())
-        if not(n>=1 or n<=10**6):
-            print('Количество элементов в массиве выходит за пределы допустимого диапазона')
-            exit()
-    # Замер времени
-    start_time = time.time()
-
+  
+    data = read_file_data(lab_task + input_path)
     
-    res_arr = anti_quick_sort(n)
-    
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
+    n = data[0]
 
-    write_data('Task2' + output_path, res_arr)
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+    assert 1 <= n <= 10**6, "Выход за пределы значений для n"
+    
+    result = ' '.join(map(str, anti_quick_sort(n)))
+   
+    write_data(lab_task + output_path, result)
+
+    print_input_output(lab_task + input_path, result)
+
+    measure(anti_quick_sort, n)
+    

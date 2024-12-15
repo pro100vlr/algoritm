@@ -1,6 +1,6 @@
-import psutil
-import time
-from utils import read_data, write_data, input_path, output_path
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab1/task5"
 
 def selection_sort(arr, n):
     for i in range(n - 1):
@@ -12,23 +12,21 @@ def selection_sort(arr, n):
         arr[i], arr[min_idx] = arr[min_idx], arr[i]
     return arr
 
-# Измеряем память
-mem_before = psutil.Process().memory_info().rss
+if __name__ == "__main__":
 
-n, array = read_data('Task5' + input_path)
-if n < 1 or n > 10**3:
-    print("Неверное значение переменных")
-    exit()
+    data = read_file_data(lab_task + input_path)
+    
+    n = data[0]
+    arr = data[1]
+    
+    assert (1<= n <= 10**3), "Выход за пределы значений для n"
+    assert (all(abs(element) <= 10**9 for element in arr)), "Не все значения находятся в указанном диапазоне"
+    
+    result = ' '.join(map(str, selection_sort(arr, n)))
+   
+    write_data(lab_task + output_path, result)
 
-# Замер времени
-start_time = time.time()
-# Сортировка выбором
-sorted_array = selection_sort(array, n)
+    print_input_output(lab_task + input_path, result)
 
-end_time = time.time()
-mem_after = psutil.Process().memory_info().rss
-
-write_data('Task5' + output_path, sorted_array)
-
-print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
-
+    measure(selection_sort, arr, n)
+    

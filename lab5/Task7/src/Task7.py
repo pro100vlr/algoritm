@@ -1,6 +1,7 @@
-import psutil
-import time
-from utils import input_path, read_data
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab5/task7"
+
 def max_heapify(array, n, i):
     """Итеративная процедура max-heapify для поддержания свойства кучи."""
     largest = i
@@ -43,24 +44,22 @@ def heap_sort(array):
 
 if __name__ == "__main__":
 
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
-
-    # Чтение данных из файла
-    n, array = read_data('Task7' + input_path, 10**5, 10**9)
+    data = read_file_data(lab_task + input_path)
     
+    n = data[0]
+    array = data[1]
+    
+    assert (1 <= n <= 10**5), "Выход за пределы значений для n"
+    assert all(abs(element) <= 10**9 for element in array), "Не все значения находятся в указанном диапазоне"
+   
+    result = heap_sort(array)
+    result.reverse()
+    result_str = ' '.join(map(str, result))
+    
+    write_data(lab_task + output_path, result_str)
 
-    # Замер времени
-    start_time = time.time()
+    print_input_output(lab_task + input_path, result_str)
 
-    # Сортировка массива
-    res_array = heap_sort(array)
-    res_array.reverse()  # Для убывающего порядка
+    measure(heap_sort, array)
 
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
-
-    with open("Task7/txtf/output.txt", "w") as f:
-        f.write(" ".join(map(str, res_array)) + "\n")
-
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+  

@@ -1,5 +1,6 @@
-import psutil
-import time
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab4/task7"
 from collections import deque
 
 def sliding_window_maximum(arr, n, m):
@@ -26,34 +27,22 @@ def sliding_window_maximum(arr, n, m):
 
 if __name__ == "__main__":
 
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
-
-    # Чтение данных из файла input.txt
-    with open('Task7/txtf/input.txt', 'r') as file:
-        n = int(file.readline().strip())
-        if not(1 <= n <= 10**5):
-            print("Количество элементов в массиве выходит за пределы допустимого диапазона")
-            exit()
-        arr = list(map(int, file.readline().strip().split()))
-        if not(1 <= len(arr) <= 10**5):
-            print("Количество элементов в массиве выходит за пределы допустимого диапазона")
-            exit()
-        m = int(file.readline().strip())
-        if not(1 <= m <= n):
-            print("Количество элементов в окне выходит за пределы допустимого диапазона")
-            exit()
+   
+    data = read_file_data(lab_task + input_path)
     
-     # Замер времени
-    start_time = time.time()
+    n = data[0]
+    arr = data[1]
+    m = data[2]
 
-    result = sliding_window_maximum(arr, n, m)
+    assert 1 <= n <= 10**6, "Выход за пределы значений для n"
+    assert 1 <= m <= n, "Выход за пределы значений для m"
+    assert all(0 <= x <= 10**5 for x in arr), "Выход за пределы значений для элементов массива"
 
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
+    result = ' '.join(map(str, sliding_window_maximum(arr, n, m)))
+   
+    write_data(lab_task + output_path, result)
 
-    # Запись результата в файл output.txt
-    with open('Task7/txtf/output.txt', 'w') as file:
-        file.write(" ".join(map(str, result)) + "\n")
-        
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+    print_input_output(lab_task + input_path, result)
+
+    measure(sliding_window_maximum, arr, n, m)
+

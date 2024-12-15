@@ -3,7 +3,6 @@ from lab6.task7.src.task7 import count_beautiful_pairs
 from utils import measure
 
 class TestBeautifulPairs(unittest.TestCase):
-     
     def test_should_сheck_time_and_memory(self):
 
         # given

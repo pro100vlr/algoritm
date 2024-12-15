@@ -1,7 +1,6 @@
-import time
-import psutil
-from utils import read_data, write_data, input_path, output_path
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
 
+lab_task = "lab1/task6"
 
 def bubble_sort(arr, n):
     for i in range(n - 1): # количество итераций должно быть на 1 меньше
@@ -19,27 +18,17 @@ def is_sorted(sorted_arr):
 
 if __name__ == '__main__':
 
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
 
-    n, array = read_data('Task6' + input_path)
+    data = read_file_data(lab_task + input_path)
+    
+    n = data[0]
+    arr = data[1]
+    
+    result = ' '.join(map(str, bubble_sort(arr, n)))
+   
+    write_data(lab_task + output_path, result)
 
-    # Замер времени
-    start_time = time.time()
+    print_input_output(lab_task + input_path, result)
 
-    # Сортировка массива
-    sorted_arr = bubble_sort(array, n)
-
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
-
-    # Запись результата в файл
-
-    write_data('Task6' + output_path, sorted_arr)
-
-    if is_sorted(sorted_arr):
-        print("Процедура bubble_sort работает корректно, массив отсортирован.")
-    else:
-        print("Массив не отсортирован")
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+    measure(bubble_sort, arr, n)
 

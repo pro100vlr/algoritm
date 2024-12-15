@@ -3,10 +3,9 @@ from lab6.task5.src.task5 import process_election_results
 from utils import measure
 
 class TestElectionResults(unittest.TestCase):
-
     def test_should_process_election_results_successful_two_candidates(self):
-        # given
         
+        # given 
         data = ['McCain 10', 'McCain 5', 'Obama 9', 'Obama 8', 'McCain 1']
         expected_output = ['McCain 16', 'Obama 17']
         expected_time = 2

@@ -1,5 +1,6 @@
-import psutil
-import time
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab3/task8"
 def k_closest_points(points, K):
     # Сортируем точки по возрастанию расстояния до начала координат
     sorted_points = sorted(points, key=lambda p: p[0]**2 + p[1]**2)
@@ -13,32 +14,19 @@ def k_closest_points(points, K):
 # Чтение данных из файла input.txt
 if __name__ == "__main__":
 
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
+    data = read_file_data(lab_task + input_path)
 
-    with open('Task8/txtf/input.txt', 'r') as f:
-        n, K = map(int, f.readline().strip().split())
-        if not(n>=1 and n<=10**5):
-            print('Количество элементов в массиве выходит за пределы допустимого диапазона')
-            exit()
-       # Считываем точки
-        points = []
-        for _ in range(n):
-            x, y = map(int, f.readline().strip().split())
-            if not(-10**8<= x <= y <= 10**8):
-                print('Элементы массива выходят за пределы допустимого диапазона')
-                exit()
-            points.append((x, y))
+    n, K = data[0]
+    points = data[1:]
 
-    # Замер времени
-    start_time = time.time()
+    assert 1 <= n <= 10**5 , "Выход за пределы значений для n "
+    assert all(all(abs(num) <= 10**9 for num in point) for point in points), "Не все значения находятся в указанном диапазоне"
 
     res_points= k_closest_points(points, K)
-    
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
+    result = ",".join(f"[{x},{y}]" for x, y in res_points)
 
-    with open('Task8/txtf/output.txt', 'w') as f:
-        formatted_points = ",".join(f"[{x},{y}]" for x, y in res_points)
-        f.write(formatted_points)
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+    write_data(lab_task + output_path, result)
+
+    print_input_output(lab_task + input_path, result)
+
+    measure(k_closest_points, points, K)

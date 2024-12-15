@@ -1,5 +1,7 @@
-import psutil
-import time
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab3/task3"
+
 def can_sort_with_k_swaps(n, k, sizes):
     # Создаём отсортированную копию массива размеров
     sorted_sizes = sorted(sizes)
@@ -17,30 +19,18 @@ def can_sort_with_k_swaps(n, k, sizes):
 
 if __name__ == "__main__":
 
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
-
-    with open('Task3/txtf/input.txt', 'r') as f:
-        h = list(map(int, f.readline().strip().split()))
-        n = h[0]
-        k = h[1]
-        if not(1<=n and k<=10**5):
-            print('Неверные значения переменных')
-            exit()
-        arr = list(map(int, f.readline().strip().split()))
-        if not(all(abs(x) <= 10**9 for x in arr)):
-            print('Элементы массива выходят за пределы допустимого диапазона')
-            exit()
-
-    # Замер времени
-    start_time = time.time()
-
+   data = read_file_data(lab_task + input_path)
     
-    res_str = can_sort_with_k_swaps(n, k, arr)
-    
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
+   n, k = data[0]
+   arr = data[1]
 
-    with open('Task3/txtf/output.txt', 'w') as f:
-        f.write(res_str )
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+   assert 1 <= n <= 10**5 and 1 <= k <= 10**5, "Выход за пределы значений для n и k"
+   assert all(abs(element) <= 10**9 for element in arr), "Не все значения находятся в указанном диапазоне"
+
+   result = can_sort_with_k_swaps(n, k, arr)
+
+   write_data(lab_task + output_path, result)
+
+   print_input_output(lab_task + input_path, result)
+
+   measure(can_sort_with_k_swaps, n, k, arr)

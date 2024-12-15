@@ -1,6 +1,6 @@
 import time 
 import psutil 
-from Task6.src.Task6 import load_data, file_path 
+from lab2.task6.src.task6 import load_data, file_path 
  
 def max_subarray_with_indices(arr): 
     max_sum = arr[0] 

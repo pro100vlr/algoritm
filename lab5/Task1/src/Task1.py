@@ -1,6 +1,6 @@
-import psutil
-import time
-from utils import read_data, input_path
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab5/task1"
 def is_heap(n, array):
     for i in range(n):
         left = 2 * i + 1
@@ -17,24 +17,21 @@ def is_heap(n, array):
     return "YES"
 
 if __name__ == "__main__":
-
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
-
-    # Чтение данных из файла
-    n, array = read_data('Task1' + input_path, 10**6, 2*10**9)
-    # Замер времени
-    start_time = time.time()
-
-    # Определение результата
-    result = is_heap(n, array)
-
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
-
-    # Запись результата в файл
-    with open("Task1/txtf/output.txt", "w") as f:
-        f.write(result + "\n")
-        
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+           
+    data = read_file_data(lab_task + input_path)
     
+    n = data[0]
+    array = data[1]
+
+    assert (1 <= n <= 10**6), "Выход за пределы значений для n"
+    assert all(abs(element) <= 2*10**9 for element in array), "Не все значения находятся в указанном диапазоне"
+
+    result = is_heap(n, array)
+   
+    write_data(lab_task + output_path, result)
+
+    print_input_output(lab_task + input_path, result)
+
+    measure(is_heap, n, array)
+
+    result = is_heap(n, array)

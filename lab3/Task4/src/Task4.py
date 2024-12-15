@@ -1,6 +1,7 @@
-import psutil
-import time
-from utils import write_data, output_path
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab3/task4"
+
 def count_segments_containing_points(segments, points):
     # Разделение отрезков на начала и концы
     starts = sorted([segment[0] for segment in segments])
@@ -34,35 +35,43 @@ def count_segments_containing_points(segments, points):
 
 if __name__ == "__main__":
 
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
+   data = read_file_data(lab_task + input_path)
+    
+   s, p = data[0]
+   segments = data[1:-1]
+   points = data[-1]
 
-    with open('Task4/txtf/input.txt', 'r') as f:
-        s, p = map(int, f.readline().strip().split())
-        if not(1<= s <= 50000 and 1<= p <= 50000 ):
-            print('Неверные значения переменных')
-            exit()
-       # Считываем отрезки
-        segments = []
-        for _ in range(s):
-            l, r = map(int, f.readline().strip().split())
-            if not(-10**8<= l <= r <= 10**8):
-                print('Элементы массива выходят за пределы допустимого диапазона')
-                exit()
-            segments.append((l, r))
-        # Считываем точки
-        points = list(map(int, f.readline().strip().split()))
-        if not(all(-10**8<= x <= 10**8 for x in points)):
-            print('Элементы массива выходят за пределы допустимого диапазона')
-            exit() 
+   assert 1 <= s <= 50000 and 1 <= p <= 50000, "Выход за пределы значений для s и p"
+   assert all(all(abs(num) <= 10**8 for num in row) for row in data), "Не все значения находятся в указанном диапазоне"
+   assert all(abs(point) <= 10**8 for point in points), "Не все значения находятся в указанном диапазоне"
 
-    # Замер времени
-    start_time = time.time()
+   result = ' '.join(map(str, count_segments_containing_points(segments, points)))
 
-  
-    res_arr = count_segments_containing_points(segments, points)
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
+   write_data(lab_task + output_path, result)
 
-    write_data('Task4' + output_path, res_arr)
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+   print_input_output(lab_task + input_path, result)
+
+   measure(count_segments_containing_points, segments, points)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

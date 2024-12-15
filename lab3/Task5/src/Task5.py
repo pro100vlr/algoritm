@@ -1,5 +1,6 @@
-import psutil
-import time
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab3/task5"
 def h_index(citations):
     citations.sort(reverse=True)  # Сортируем по убыванию
     h = 0
@@ -14,27 +15,22 @@ def h_index(citations):
 
 if __name__ == "__main__":
 
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
-
-    with open('Task5/txtf/input.txt', 'r') as f:
-        citations=list(map(int, f.readline().strip().split(',')))
-        if not(all(0 <= x <= 10**3 for x in citations)):
-            print('Элементы массива выходят за пределы допустимого диапазона')
-            exit()
-        if len(citations) > 5000 :
-            print('Количество элементов в массиве выходит за пределы допустимого диапазона')
-            exit()
-
-    # Замер времени
-    start_time = time.time()
-
-  
-    h = h_index(citations)
+    data = read_file_data(lab_task + input_path)
     
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
+    citations = list(map(int,data[0].split(',')))
 
-    with open('Task5/txtf/output.txt', 'w') as f:
-        f.write(str(h))
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+    assert all(0 <= num <= 1000 for num in citations), "Выход за пределы значений для citations"
+    
+    result = str(h_index(citations))
+   
+    write_data(lab_task + output_path, result)
+
+    print_input_output(lab_task + input_path, result)
+
+    measure(h_index,citations)
+
+
+
+
+
+

@@ -1,6 +1,5 @@
 from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
 
-# Указание пути к задаче
 lab_task = "lab6/task4"
 
 def put_element(data, order, key, value):

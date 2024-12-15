@@ -1,6 +1,7 @@
 import heapq
-import psutil
-import time
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab5/task5"
 
 def schedule_tasks(n, m, tasks):
     # Очередь с приоритетами для потоков
@@ -20,28 +21,19 @@ def schedule_tasks(n, m, tasks):
 
 if __name__ == "__main__":
 
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
-
-    # Чтение входных данных
-    with open("Task5/txtf/input.txt", "r") as f:
-        n, m = map(int, f.readline().split())
-        tasks = list(map(int, f.readline().split()))
-
-    # Замер времени
-    start_time1 = time.time()
-
-    # Решение задачи
-    result = schedule_tasks(n, m, tasks)
-
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
-
-    # Запись выходных данных
-    with open("Task5/txtf/output.txt", "w") as f:
-        for thread_index, start_time in result:
-            f.write(f"{thread_index} {start_time}\n")
-
-    print(f"Время работы: {end_time - start_time1 :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+    data = read_file_data(lab_task + input_path)
     
+    n, m = data[0]
+    tasks = data[1]
+    
+    assert (1 <= n <= 10**6) and (1 <= m <= 10**6), "Выход за пределы значений для n и m"
+    assert all(0 <= task <= 10**9 for task in tasks), "Выход за пределы значений для заданий"
+    
+    result = schedule_tasks(n, m, tasks)
+    result_str = "\n".join(" ".join(map(str, element)) for element in result)
+    
+    write_data(lab_task + output_path, result_str)
 
+    print_input_output(lab_task + input_path, result_str)
+
+    measure(schedule_tasks, n, m, tasks)

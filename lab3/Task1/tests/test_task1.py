@@ -1,49 +1,193 @@
-from Task1.src.Task1 import quick_sort, randomized_quick_sort, randomized_quick_sort_c_partition
+import unittest
+from lab3.task1.src.task1 import quick_sort, randomized_quick_sort, randomized_quick_sort_c_partition
+from utils import read_file_data, measure
 
-import psutil
-import time
+class TestQuickSort(unittest.TestCase):
+    expected_time = 2
+    expected_memory = 256
 
-from utils import read_data
-#import sys
-#sys.setrecursionlimit(3000)
+    @classmethod
+    def setUpClass(cls):
+        print("QuickSort")
 
-def test_quick_sort(function):
-
-    time_list = []
-    mem_list = []
-    for input in ['input_average.txt', 'input_worst.txt', 'input_best.txt']:
-        # Измеряем память перед сортировкой
-        mem_before = psutil.Process().memory_info().rss
-
-        n, input_array = read_data(f'Task1/tests/{input}', 10**4, 10**9)
+    def test_should_sort_array_case_average(self):
         
-        expected = sorted(input_array)
-
-        # Замер времени перед сортировкой
-        start_time = time.time()
-
-        # Вызов функции сортировки
-        function(input_array, 0, n - 1)
-
-        # Замер времени после сортировки
-        end_time = time.time()
-        # Измеряем память после сортировки
-        mem_after = psutil.Process().memory_info().rss
+        # given  
+        data = read_file_data('lab3/task1/tests/input_average.txt')
+        n = data[0]
+        arr = data[1]
+        expected_output = sorted(arr)
         
-        # Проверка соответствия результата функции и ожидаемого результата 
-        assert input_array == expected, f"Test failed for {input} with {function.__name__}"
+        # then
+        quick_sort(arr, 0, n-1)
+        print('Для среднего случая:')
+        time, memory = measure(quick_sort, arr, 0, n-1)
 
-        time_list.append(end_time - start_time)
-        mem_list.append(mem_after - mem_before)
+        # when
+        self.assertEqual(arr, expected_output)
+        self.assertLessEqual(time, self.expected_time)
+        self.assertLessEqual(memory, self.expected_memory)
 
-    print(f"All tests passed for {function.__name__}")
+    def test_should_sort_array_case_best(self):
 
-    print(f"Average input case for function {function.__name__} - time: {time_list[0] :.3f} sec, memory - {mem_list[0] / 1024**2 :.3f} Мб")
-    print(f"Worst input case for function {function.__name__} - time: {time_list[1] :.3f} sec, memory - {mem_list[1] / 1024**2 :.3f} Мб")
-    print(f"Best input case for function {function.__name__} - time: {time_list[2] :.3f} sec, memory - {mem_list[2] / 1024**2 :.3f} Мб\n")
+        # given
+        data = read_file_data('lab3/task1/tests/input_best.txt')
+        n = data[0]
+        arr = data[1]
+        expected_output = sorted(arr)
+       
+        # then
+        quick_sort(arr, 0, n-1)
+        print('Для наилудшего случая:')
+        time, memory = measure(quick_sort, arr, 0, n-1)
 
-test_quick_sort(quick_sort)
+        # when
+        self.assertEqual(arr, expected_output)
+        self.assertLessEqual(time, self.expected_time)
+        self.assertLessEqual(memory, self.expected_memory)
 
-test_quick_sort(randomized_quick_sort)
+    def test_should_sort_array_case_worst(self):
 
-test_quick_sort(randomized_quick_sort_c_partition)
+        # given
+        data = read_file_data('lab3/task1/tests/input_worst.txt')
+        n = data[0]
+        arr = data[1]
+        expected_output = sorted(arr)
+
+        # then
+        quick_sort(arr, 0, n-1)
+        print('Для наихудшего случая:')
+        time, memory = measure(quick_sort, arr, 0, n-1)
+
+        # when
+        self.assertEqual(arr, expected_output)
+        self.assertLessEqual(time, self.expected_time)
+        self.assertLessEqual(memory, self.expected_memory)
+
+class TestRandomizedQuickSort(unittest.TestCase):
+    expected_time = 2
+    expected_memory = 256
+
+    @classmethod
+    def setUpClass(cls):
+        print("RandomizedQuickSort")
+
+    def test_should_sort_array_case_average(self):
+        
+        # given
+        data = read_file_data('lab1/task1/tests/input_average.txt')
+        n = data[0]
+        arr = data[1]
+        expected_output = sorted(arr)
+        
+        # then
+        randomized_quick_sort(arr, 0, n - 1)
+        print('Для среднего случая:')
+        time, memory = measure(randomized_quick_sort, arr, 0, n-1)
+
+        # when
+        self.assertEqual(arr, expected_output)
+        self.assertLessEqual(time, self.expected_time)
+        self.assertLessEqual(memory, self.expected_memory)
+
+    def test_should_sort_array_case_best(self):
+
+        # given  
+        data = read_file_data('lab1/task1/tests/input_best.txt')
+        n = data[0]
+        arr = data[1]
+        expected_output = sorted(arr)
+       
+        # then
+        randomized_quick_sort(arr, 0, n-1)
+        print('Для наилудшего случая:')
+        time, memory = measure(randomized_quick_sort, arr, 0, n-1)
+
+        # when
+        self.assertEqual(arr, expected_output)
+        self.assertLessEqual(time, self.expected_time)
+        self.assertLessEqual(memory, self.expected_memory)
+
+    def test_should_sort_array_case_worst(self):
+
+        # given
+        data = read_file_data('lab1/task1/tests/input_worst.txt')
+        n = data[0]
+        arr = data[1]
+        expected_output = sorted(arr)
+
+        # then
+        randomized_quick_sort(arr, 0, n-1)
+        print('Для наихудшего случая:')
+        time, memory = measure(randomized_quick_sort, arr, 0, n-1)
+
+        # when
+        self.assertEqual(arr, expected_output)
+        self.assertLessEqual(time, self.expected_time)
+        self.assertLessEqual(memory, self.expected_memory)
+
+class TestRandomizedQuickSortCPartition(unittest.TestCase):
+    expected_time = 2
+    expected_memory = 256
+
+    @classmethod
+    def setUpClass(cls):
+        print("RandomizedQuickSortCPartition")
+
+    def test_should_sort_array_case_average(self):
+        
+        # given
+        data = read_file_data('lab1/task1/tests/input_average.txt')
+        n = data[0]
+        arr = data[1]
+        expected_output = sorted(arr)
+        
+        # then
+        randomized_quick_sort_c_partition(arr, 0, n - 1)
+        print('Для среднего случая:')
+        time, memory = measure(randomized_quick_sort_c_partition, arr, 0, n-1)
+
+        # when
+        self.assertEqual(arr, expected_output)
+        self.assertLessEqual(time, self.expected_time)
+        self.assertLessEqual(memory, self.expected_memory)
+
+    def test_should_sort_array_case_best(self):
+
+        # given  
+        data = read_file_data('lab1/task1/tests/input_best.txt')
+        n = data[0]
+        arr = data[1]
+        expected_output = sorted(arr)
+       
+        # then
+        randomized_quick_sort_c_partition(arr, 0, n-1)
+        print('Для наилудшего случая:')
+        time, memory = measure(randomized_quick_sort_c_partition, arr, 0, n-1)
+
+        # when
+        self.assertEqual(arr, expected_output)
+        self.assertLessEqual(time, self.expected_time)
+        self.assertLessEqual(memory, self.expected_memory)
+
+    def test_should_sort_array_case_worst(self):
+
+        # given
+        data = read_file_data('lab1/task1/tests/input_worst.txt')
+        n = data[0]
+        arr = data[1]
+        expected_output = sorted(arr)
+
+        # then
+        randomized_quick_sort_c_partition(arr, 0, n-1)
+        print('Для наихудшего случая:')
+        time, memory = measure(randomized_quick_sort_c_partition, arr, 0, n-1)
+
+        # when
+        self.assertEqual(arr, expected_output)
+        self.assertLessEqual(time, self.expected_time)
+        self.assertLessEqual(memory, self.expected_memory)
+
+if __name__ == "__main__":
+    unittest.main()
+

@@ -1,6 +1,6 @@
-import psutil
-import time
-from utils import write_data, output_path
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab2/task4"
 
 def binary_search(arr, target):
     left, right = 0, len(arr) - 1
@@ -20,42 +20,29 @@ def binary_search(arr, target):
 
 if __name__ == '__main__':
     
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
-
-    # Чтение данных из входного файла
-    with open('Task4/txtf/input.txt', 'r') as f:
-        n = int(f.readline().strip())
-        if not(n >= 1 or n <= 10**5):
-            print("Неверное значение переменных")
-            exit()
-        sorted_array = list(map(int, f.readline().split()))
-        if not all(1 <= x <= 10**9 for x in sorted_array):     ### ТУТ ЕЩЕ НАДО ПРОВЕРИТЬ, ЧТО ЧИСЛА В МАССИВЕ РАЗЛИЧНЫ
-            print("Элементы массива выходят за пределы допустимого диапазона")
-            exit()
-        k = int(f.readline().strip())
-        if not(k >= 1 or k <= 10**5):
-            print("Неверное значение переменных")
-            exit()
-        targets = list(map(int, f.readline().split()))
-        if not all(1 <= x <= 10**9 for x in targets):
-            print("Элементы массива выходят за пределы допустимого диапазона")
-            exit()
-
+    data = read_file_data(lab_task + input_path)
     
-    # Замер времени
-    start_time = time.time()
-    # Ищем каждый элемент из targets в отсортированном массиве sorted_array
+    n = data[0]
+    sorted_array = data[1]
+    k  = data[2]
+    targets = data[3]
+
+    assert (1 <= n <= 10**5) and (1 <= k <= 10**5), "Выход за пределы значений для n и k"
+    assert(all(1 <= element <= 10**9 for element in sorted_array)), "Не все значения находятся в указанном диапазоне"
+
     results = []
     for target in targets:
         index = binary_search(sorted_array, target)
         results.append(index)
 
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
+    results_str = ' '.join(map(str, results))
+   
+    write_data(lab_task + output_path, results_str)
 
-    # Запись результатов в выходной файл
-    write_data('Task4' + output_path, results)
+    print_input_output(lab_task + input_path, results_str)
 
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+    measure(binary_search, sorted_array, targets[0])
+  
+  
+
     

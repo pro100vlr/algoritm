@@ -43,13 +43,15 @@ def display(head):
         current = current[1]
     print("None")
 
-# Пример использования
-head, tail, size = enqueue(head, tail, size, 10)
-head, tail, size = enqueue(head, tail, size, 20)
-head, tail, size = enqueue(head, tail, size, 30)
-display(head)  # Вывод: 10 -> 20 -> 30 -> None
-value, head, tail, size = dequeue(head, tail, size)
-print(value)  # Вывод: 10
-display(head)  # Вывод: 20 -> 30 -> None
-head, tail, size = enqueue(head, tail, size, 40)
-display(head)  # Вывод: 20 -> 30 -> 40 -> None
+if __name__ == "__main__":
+    # Пример использования
+    head, tail, size = enqueue(head, tail, size, 10)
+    head, tail, size = enqueue(head, tail, size, 20)
+    head, tail, size = enqueue(head, tail, size, 30)
+    display(head)  # Вывод: 10 -> 20 -> 30 -> None
+    value, head, tail, size = dequeue(head, tail, size)
+    print(value)  # Вывод: 10
+    display(head)  # Вывод: 20 -> 30 -> None
+    head, tail, size = enqueue(head, tail, size, 40)
+    display(head)  # Вывод: 20 -> 30 -> 40 -> None
+

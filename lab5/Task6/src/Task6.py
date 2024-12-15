@@ -1,6 +1,7 @@
 import heapq
-import psutil
-import time
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab5/task6"
 
 def process_operations(operations):
     heap = []  # Основная куча
@@ -46,25 +47,18 @@ def process_operations(operations):
 
 if __name__ == "__main__":
 
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
-
-    # Чтение данных
-    with open("Task6/txtf/input.txt", "r") as f:
-        n = int(f.readline())
-        operations = [f.readline().strip().split() for _ in range(n)]
-
-    # Замер времени
-    start_time = time.time()
-
-    # Выполнение операций
-    output = process_operations(operations)
-
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
-
-    # Запись результатов
-    with open("Task6/txtf/output.txt", "w") as f:
-        f.write("\n".join(output) + "\n")
+    data = read_file_data(lab_task + input_path)
     
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+    n = data[0]
+    operations = [operation.split() for operation in data[1:]]
+    
+    assert 1 <= n <= 10**6, "Слишком много операций!"
+    
+    result = ' '.join(map(str, process_operations(operations)))
+    
+    write_data(lab_task + output_path, result)
+
+    print_input_output(lab_task + input_path, result)
+
+    measure(process_operations, operations)
+

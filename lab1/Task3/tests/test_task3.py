@@ -1,36 +1,103 @@
-from Task3.src.Task3 import insertion_sort_descending
-import psutil
-import time
-from utils import read_data
+import unittest
+from lab1.task3.src.task3 import insertion_sort_descending
+from utils import read_file_data, measure
 
-time_list = []
-mem_list = []
-for input in ['input_average.txt', 'input_worst.txt', 'input_best.txt']:
-    # Измеряем память перед сортировкой
-    mem_before = psutil.Process().memory_info().rss
+class TestInsertionSortDescending(unittest.TestCase):
+    expected_time = 2
+    expected_memory = 256
 
-    n, input_array = read_data(f'Task3/tests/{input}')
-    expected = sorted(input_array, reverse=True)
+    @classmethod
+    def setUpClass(cls):
+        print("InsertionSortDescending")
 
-    # Замер времени перед сортировкой
-    start_time = time.time()
+    def test_should_sort_array_case_average(self):
 
-    # Вызов функции сортировки
-    result = insertion_sort_descending(input_array, n)
+        # given
+        data = read_file_data('lab1/task1/tests/input_average.txt')
+        n = data[0]
+        arr = data[1]
+        expected_output = sorted(arr, reverse=True)
 
-    # Замер времени после сортировки
-    end_time = time.time()
-    # Измеряем память после сортировки
-    mem_after = psutil.Process().memory_info().rss
+        # then
+        insertion_sort_descending(arr, n)
+        print('Для среднего случая:')
+        time, memory = measure(insertion_sort_descending, arr, n)
 
-    # Проверка соответствия результата функции и ожидаемого результата 
-    assert result == expected
+        # when
+        self.assertEqual(arr, expected_output)
+        self.assertLessEqual(time, self.expected_time)
+        self.assertLessEqual(memory, self.expected_memory)
 
-    time_list.append(end_time - start_time)
-    mem_list.append(mem_after - mem_before)
+    def test_should_sort_array_case_best(self):
 
+        # given
+        data = read_file_data('lab1/task1/tests/input_best.txt')
+        n = data[0]
+        arr = data[1]
+        expected_output = sorted(arr, reverse=True)
 
-print("All tests passed")
-print(f"Average input case - time: {time_list[0] :.3f} sec, memory - {mem_list[0] / 1024**2 :.3f} Мб")
-print(f"Worst input case - time: {time_list[1] :.3f} sec, memory - {mem_list[1] / 1024**2 :.3f} Мб")
-print(f"Best input case - time: {time_list[2] :.3f} sec, memory - {mem_list[2] / 1024**2 :.3f} Мб")
+        # then
+        insertion_sort_descending(arr, n)
+        print('Для наилучшего случая:')
+        time, memory = measure(insertion_sort_descending, arr, n)
+
+        # when
+        self.assertEqual(arr, expected_output)
+        self.assertLessEqual(time, self.expected_time)
+        self.assertLessEqual(memory, self.expected_memory)
+
+    def test_should_sort_array_case_worst(self):
+
+        # given
+        data = read_file_data('lab1/task1/tests/input_worst.txt')
+        n = data[0]
+        arr = data[1]
+        expected_output = sorted(arr, reverse=True)
+
+        # then
+        insertion_sort_descending(arr, n)
+        print('Для наихудшего случая:')
+        time, memory = measure(insertion_sort_descending, arr, n)
+
+        # when
+        self.assertEqual(arr, expected_output)
+        self.assertLessEqual(time, self.expected_time)
+        self.assertLessEqual(memory, self.expected_memory)
+
+    def test_should_handle_empty_array(self):
+
+        # given
+        arr = []
+        n = len(arr)
+        expected_output = []
+
+        # then
+        insertion_sort_descending(arr, n)
+        print('Для пустого массива:')
+        time, memory = measure(insertion_sort_descending, arr, n)
+
+        # when
+        self.assertEqual(arr, expected_output)
+        self.assertLessEqual(time, self.expected_time)
+        self.assertLessEqual(memory, self.expected_memory)
+
+    def test_should_handle_single_element_array(self):
+        
+        # given
+        arr = [42]
+        n = len(arr)
+        expected_output = [42]
+
+        # then
+        insertion_sort_descending(arr, n)
+        print('Для массива с одним элементом:')
+        time, memory = measure(insertion_sort_descending, arr, n)
+
+        # when
+        self.assertEqual(arr, expected_output)
+        self.assertLessEqual(time, self.expected_time)
+        self.assertLessEqual(memory, self.expected_memory)
+
+if __name__ == "__main__":
+    unittest.main()
+    

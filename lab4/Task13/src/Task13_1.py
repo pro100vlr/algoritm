@@ -24,11 +24,13 @@ def display(stack):
         current = current[1]
     print("None")
 
-# Пример использования
-stack = push(stack, 10)
-stack = push(stack, 20)
-stack = push(stack, 30)
-display(stack)  # Вывод: 30 -> 20 -> 10 -> None
-value, stack = pop(stack)
-print(value)  # Вывод: 30
-display(stack)  # Вывод: 20 -> 10 -> None
+if __name__ == "__main__":
+    # Пример использования
+    stack = push(stack, 10)
+    stack = push(stack, 20)
+    stack = push(stack, 30)
+    display(stack)  # Вывод: 30 -> 20 -> 10 -> None
+    value, stack = pop(stack)
+    print(value)  # Вывод: 30
+    display(stack)  # Вывод: 20 -> 10 -> None
+

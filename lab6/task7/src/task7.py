@@ -1,7 +1,6 @@
 from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
 from collections import defaultdict
 
-# Указание пути к задаче
 lab_task = "lab6/task7"
 
 def count_beautiful_pairs(n, k, s, pairs):

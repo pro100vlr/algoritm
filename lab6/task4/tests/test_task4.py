@@ -4,8 +4,8 @@ from utils import measure
 
 class Test(unittest.TestCase):
     def test_should_сheck_time_and_memory(self):
-        # given
         
+        # given
         operations = [['put', 'zero', 'a'], ['put', 'one', 'b'], ['put', 'two', 'c'], ['put', 'three', 'd'], ['put', 'four', 'e'], ['get', 'two'], ['prev', 'two'], ['next', 'two'], ['delete', 'one'], ['delete', 'three'], ['get', 'two'], ['prev', 'two'], ['next', 'two'], ['next', 'four']]
         expected_output = ['c', 'b', 'd', 'c', 'a', 'e', '<none>']
         expected_time = 4

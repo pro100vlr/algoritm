@@ -1,5 +1,6 @@
-import psutil
-import time
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab4/task8"
 
 def evaluate_postfix(expression):
     stack = []
@@ -22,27 +23,20 @@ def evaluate_postfix(expression):
 
 if __name__ == "__main__":
 
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
+    data = read_file_data(lab_task + input_path)
+    
+    n = data[0]
+    expression = data[1].split()
+    
+    assert (1 <= n <= 10**6), "Выход за пределы значений для n"
 
-    # Чтение данных из файла
-    with open("Task8/txtf/input.txt", "r") as file:
-        n = int(file.readline().strip())
-        if not(1 <= n <= 10**6):
-            print("Количество элементов в массиве выходит за пределы допустимого диапазона")
-            exit()
-        expression = file.readline().strip().split()
+    result = str(evaluate_postfix(expression))
 
-   # Замер времени
-    start_time = time.time()
+    write_data(lab_task + output_path, result)
 
-    result = evaluate_postfix(expression)
+    print_input_output(lab_task + input_path, result)
 
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
+    measure(evaluate_postfix, expression)
 
-    # Запись результата в файл
-    with open("Task8/txtf/output.txt", "w") as file:
-        file.write(str(result))
 
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+   

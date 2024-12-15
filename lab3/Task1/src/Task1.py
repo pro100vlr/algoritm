@@ -1,7 +1,7 @@
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
 import random
-import psutil
-import time
-from utils import  write_data, read_data, input_path, output_path
+
+lab_task = "lab3/task1"
 
 def partition(arr, low, high):
     pivot = arr[high]
@@ -70,22 +70,21 @@ def randomized_quick_sort_c_partition(arr, low, high):
 
 if __name__ == "__main__":
 
-    # Измеряем память
-    mem_before = psutil.Process().memory_info().rss
+    data = read_file_data(lab_task + input_path)
+    
+    n = data[0]
+    arr = data[1]
+    
+    assert 1 <= n <= 10**4, "Выход за пределы значений для n"
+    assert all(abs(element) <= 10**9 for element in arr), "Не все значения находятся в указанном диапазоне"
 
-    n, array = read_data('Task1' + input_path, 10**4, 10**9)
+    result = ' '.join(map(str, randomized_quick_sort_c_partition(arr, 0, n-1)))
+    #result = ' '.join(map(str, partition(arr, low, high)))
+    write_data(lab_task + output_path, result)
+
+    print_input_output(lab_task + input_path, result)
+
+    measure(partition, arr, 0, n-1)
     
 
-    # Замер времени
-    start_time = time.time()
 
-    # Сортировка слиянием
-    sorted_arr = randomized_quick_sort_c_partition(array, 0, n - 1)
-
-    
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
-
-    write_data('Task1' + output_path, sorted_arr)
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
-    

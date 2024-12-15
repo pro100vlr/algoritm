@@ -1,4 +1,3 @@
-
 import psutil 
 import time 
 import csv 
@@ -76,15 +75,15 @@ def load_data(file_path):
      
     return dates, price_changes 
  
- 
-# Измеряем память 
-mem_before = psutil.Process().memory_info().rss 
- 
 # Загрузим данные 
-file_path = 'Task6/txtf/aame.us.txt' 
-dates, price_changes = load_data(file_path) 
+file_path = 'lab2/task6/txtf/aame.us.txt'  
  
 if __name__ == '__main__': 
+
+    # Измеряем память 
+    mem_before = psutil.Process().memory_info().rss 
+    # Загрузим данные
+    dates, price_changes = load_data(file_path)
     # Замер времени 
     start_time = time.time() 
     # Найдём дни покупки и продажи с максимальной прибылью 

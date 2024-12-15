@@ -1,5 +1,6 @@
-import psutil
-import time
+from utils import read_file_data, input_path, output_path, print_input_output, write_data, measure
+
+lab_task = "lab2/task5"
 
 def find_majority_element(arr, n):
     # Первый этап: находим кандидата на большинство
@@ -19,26 +20,18 @@ def find_majority_element(arr, n):
 
 if __name__ == '__main__':
 
-    mem_before = psutil.Process().memory_info().rss
+    data = read_file_data(lab_task + input_path)
+    
+    n = data[0]
+    arr = data[1]
 
-    with open('Task5/txtf/input.txt', 'r') as file:
-        n = int(file.readline().strip())     ## ДОПИСАТЬ ОГРАНИЧЕНИЯ ИЗ УСЛОВИЯ ЗАДАЧИ
-        arr = list(map(int, file.readline().strip().split()))
-        if not(n >= 1 and n <= 10**5):
-            print('Количество элементов в массиве выходит за пределы допустимого диапазона')
-            exit()
-        if not(all(0 <= x <= 10**9 for x in arr)):
-            print('Элементы массива выходят за пределы допустимого диапазона')
-            exit()
-    # Замер времени
-    start_time = time.time()
-    # Поиск представителя большинства
-    majority_element = find_majority_element(arr, n)
+    assert (1 <= n <= 10**5), "Выход за пределы значений для n"
+    assert(all((abs(element) <= 10**9 for element in arr))), "Не все значения находятся в указанном диапазоне"
 
+    result = str(1 if find_majority_element(arr, n) is not None else 0)
 
-    end_time = time.time()
-    mem_after = psutil.Process().memory_info().rss
+    write_data(lab_task + output_path, result)
 
-    with open('Task5/txtf/output.txt', 'w') as file:
-        file.write('1' if majority_element is not None else '0')
-    print(f"Время работы: {end_time - start_time :.3f} с, Память - {(mem_after - mem_before) / 1024**2 :.3f} Мб")
+    print_input_output(lab_task + input_path, result)
+
+    measure(find_majority_element, arr, n)
