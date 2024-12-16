@@ -19,12 +19,11 @@ class TestMergeSort(unittest.TestCase):
         expected_output = sorted(arr)
 
         # then
-        merge_sort(arr)
-        print('Для среднего случая:')
+        result = merge_sort(arr)
         time, memory = measure(merge_sort, arr)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -37,12 +36,11 @@ class TestMergeSort(unittest.TestCase):
         expected_output = sorted(arr)
 
         # then
-        merge_sort(arr)
-        print('Для наилучшего случая:')
+        result = merge_sort(arr)
         time, memory = measure(merge_sort, arr)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -55,12 +53,11 @@ class TestMergeSort(unittest.TestCase):
         expected_output = sorted(arr)
 
         # then
-        merge_sort(arr)
-        print('Для наихудшего случая:')
+        result = merge_sort(arr)
         time, memory = measure(merge_sort, arr)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -72,12 +69,11 @@ class TestMergeSort(unittest.TestCase):
         expected_output = []
 
         # then
-        merge_sort(arr)
-        print('Для пустого массива:')
+        result = merge_sort(arr)
         time, memory = measure(merge_sort, arr)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -88,12 +84,11 @@ class TestMergeSort(unittest.TestCase):
         expected_output = [42]
 
         # then
-        merge_sort(arr)
-        print('Для массива с одним элементом:')
+        result = merge_sort(arr)
         time, memory = measure(merge_sort, arr)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -104,12 +99,11 @@ class TestMergeSort(unittest.TestCase):
         expected_output = []
 
         # then
-        merge_sort(arr)
-        print('Для пустого массива:')
+        result = merge_sort(arr)
         time, memory = measure(merge_sort, arr)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -120,12 +114,11 @@ class TestMergeSort(unittest.TestCase):
         expected_output = [42]
 
         # then
-        merge_sort(arr)
-        print('Для массива с одним элементом:')
+        result = merge_sort(arr)
         time, memory = measure(merge_sort, arr)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 

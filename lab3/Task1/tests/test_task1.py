@@ -19,12 +19,11 @@ class TestQuickSort(unittest.TestCase):
         expected_output = sorted(arr)
         
         # then
-        quick_sort(arr, 0, n-1)
-        print('Для среднего случая:')
+        result = quick_sort(arr, 0, n-1)
         time, memory = measure(quick_sort, arr, 0, n-1)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -37,12 +36,11 @@ class TestQuickSort(unittest.TestCase):
         expected_output = sorted(arr)
        
         # then
-        quick_sort(arr, 0, n-1)
-        print('Для наилудшего случая:')
+        result = quick_sort(arr, 0, n-1)
         time, memory = measure(quick_sort, arr, 0, n-1)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -55,12 +53,11 @@ class TestQuickSort(unittest.TestCase):
         expected_output = sorted(arr)
 
         # then
-        quick_sort(arr, 0, n-1)
-        print('Для наихудшего случая:')
+        result = quick_sort(arr, 0, n-1)
         time, memory = measure(quick_sort, arr, 0, n-1)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -81,12 +78,11 @@ class TestRandomizedQuickSort(unittest.TestCase):
         expected_output = sorted(arr)
         
         # then
-        randomized_quick_sort(arr, 0, n - 1)
-        print('Для среднего случая:')
+        result = randomized_quick_sort(arr, 0, n - 1)
         time, memory = measure(randomized_quick_sort, arr, 0, n-1)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -99,12 +95,11 @@ class TestRandomizedQuickSort(unittest.TestCase):
         expected_output = sorted(arr)
        
         # then
-        randomized_quick_sort(arr, 0, n-1)
-        print('Для наилудшего случая:')
+        result = randomized_quick_sort(arr, 0, n-1)
         time, memory = measure(randomized_quick_sort, arr, 0, n-1)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -117,12 +112,11 @@ class TestRandomizedQuickSort(unittest.TestCase):
         expected_output = sorted(arr)
 
         # then
-        randomized_quick_sort(arr, 0, n-1)
-        print('Для наихудшего случая:')
+        result = randomized_quick_sort(arr, 0, n-1)
         time, memory = measure(randomized_quick_sort, arr, 0, n-1)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -143,12 +137,11 @@ class TestRandomizedQuickSortCPartition(unittest.TestCase):
         expected_output = sorted(arr)
         
         # then
-        randomized_quick_sort_c_partition(arr, 0, n - 1)
-        print('Для среднего случая:')
+        result = randomized_quick_sort_c_partition(arr, 0, n - 1)
         time, memory = measure(randomized_quick_sort_c_partition, arr, 0, n-1)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -161,12 +154,11 @@ class TestRandomizedQuickSortCPartition(unittest.TestCase):
         expected_output = sorted(arr)
        
         # then
-        randomized_quick_sort_c_partition(arr, 0, n-1)
-        print('Для наилудшего случая:')
+        result =randomized_quick_sort_c_partition(arr, 0, n-1)
         time, memory = measure(randomized_quick_sort_c_partition, arr, 0, n-1)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -179,12 +171,11 @@ class TestRandomizedQuickSortCPartition(unittest.TestCase):
         expected_output = sorted(arr)
 
         # then
-        randomized_quick_sort_c_partition(arr, 0, n-1)
-        print('Для наихудшего случая:')
+        result = randomized_quick_sort_c_partition(arr, 0, n-1)
         time, memory = measure(randomized_quick_sort_c_partition, arr, 0, n-1)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 

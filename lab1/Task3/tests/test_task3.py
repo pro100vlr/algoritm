@@ -19,12 +19,11 @@ class TestInsertionSortDescending(unittest.TestCase):
         expected_output = sorted(arr, reverse=True)
 
         # then
-        insertion_sort_descending(arr, n)
-        print('Для среднего случая:')
+        result = insertion_sort_descending(arr, n)
         time, memory = measure(insertion_sort_descending, arr, n)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -37,12 +36,11 @@ class TestInsertionSortDescending(unittest.TestCase):
         expected_output = sorted(arr, reverse=True)
 
         # then
-        insertion_sort_descending(arr, n)
-        print('Для наилучшего случая:')
+        result = insertion_sort_descending(arr, n)
         time, memory = measure(insertion_sort_descending, arr, n)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -55,12 +53,11 @@ class TestInsertionSortDescending(unittest.TestCase):
         expected_output = sorted(arr, reverse=True)
 
         # then
-        insertion_sort_descending(arr, n)
-        print('Для наихудшего случая:')
+        result = insertion_sort_descending(arr, n)
         time, memory = measure(insertion_sort_descending, arr, n)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -72,12 +69,11 @@ class TestInsertionSortDescending(unittest.TestCase):
         expected_output = []
 
         # then
-        insertion_sort_descending(arr, n)
-        print('Для пустого массива:')
+        result =insertion_sort_descending(arr, n)
         time, memory = measure(insertion_sort_descending, arr, n)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -89,12 +85,11 @@ class TestInsertionSortDescending(unittest.TestCase):
         expected_output = [42]
 
         # then
-        insertion_sort_descending(arr, n)
-        print('Для массива с одним элементом:')
+        result = insertion_sort_descending(arr, n)
         time, memory = measure(insertion_sort_descending, arr, n)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 

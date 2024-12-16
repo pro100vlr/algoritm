@@ -19,12 +19,11 @@ class TestSelectionSort(unittest.TestCase):
         expected_output = sorted(arr)
 
         # then
-        selection_sort(arr, n)
-        print('Для среднего случая:')
+        result =selection_sort(arr, n)
         time, memory = measure(selection_sort, arr, n)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -37,13 +36,12 @@ class TestSelectionSort(unittest.TestCase):
         expected_output = sorted(arr)
 
         # then
-        selection_sort(arr, n)
-        print('Для наилучшего случая:')
+        result = selection_sort(arr, n)
         time, memory = measure(selection_sort, arr, n)
 
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -56,12 +54,11 @@ class TestSelectionSort(unittest.TestCase):
         expected_output = sorted(arr)
 
         # then
-        selection_sort(arr, n)
-        print('Для наихудшего случая:')
+        result = selection_sort(arr, n)
         time, memory = measure(selection_sort, arr, n)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -73,13 +70,11 @@ class TestSelectionSort(unittest.TestCase):
         expected_output = []
 
         # then
-        selection_sort(arr, n)
-        print('Для пустого массива:')
+        result =selection_sort(arr, n)
         time, memory = measure(selection_sort, arr, n)
 
-     
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -91,12 +86,11 @@ class TestSelectionSort(unittest.TestCase):
         expected_output = [42]
 
         # then
-        selection_sort(arr, n)
-        print('Для массива с одним элементом:')
+        result = selection_sort(arr, n)
         time, memory = measure(selection_sort, arr, n)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 

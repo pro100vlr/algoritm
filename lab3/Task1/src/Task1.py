@@ -18,6 +18,7 @@ def quick_sort(arr, low, high):
         pivot_index = partition(arr, low, high)
         quick_sort(arr, low, pivot_index - 1)
         quick_sort(arr, pivot_index + 1, high)
+    return arr
 
 def randomized_partition(arr, low, high):
     pivot_index = random.randint(low, high)
@@ -36,6 +37,7 @@ def randomized_quick_sort(arr, low, high):
         pivot_index = randomized_partition(arr, low, high)
         randomized_quick_sort(arr, low, pivot_index - 1)
         randomized_quick_sort(arr, pivot_index + 1, high)
+    return arr
 
 def c_partition(arr, low, high):
     pivot_index = random.randint(low, high)

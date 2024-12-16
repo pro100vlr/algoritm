@@ -19,12 +19,11 @@ class TestBubbleSort(unittest.TestCase):
         expected_output = sorted(arr)
 
         # then
-        bubble_sort(arr, n)
-        print('Для среднего случая:')
+        result =bubble_sort(arr, n)
         time, memory = measure(bubble_sort, arr, n)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -37,12 +36,11 @@ class TestBubbleSort(unittest.TestCase):
         expected_output = sorted(arr)
 
         # then
-        bubble_sort(arr, n)
-        print('Для наилучшего случая:')
+        result = bubble_sort(arr, n)
         time, memory = measure(bubble_sort, arr, n)
     
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -55,12 +53,11 @@ class TestBubbleSort(unittest.TestCase):
         expected_output = sorted(arr)
 
         # then
-        bubble_sort(arr, n)
-        print('Для наихудшего случая:')
+        result = bubble_sort(arr, n)
         time, memory = measure(bubble_sort, arr, n)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -72,13 +69,12 @@ class TestBubbleSort(unittest.TestCase):
         expected_output = []
 
         # then
-        bubble_sort(arr, n)
-        print('Для пустого массива:')
+        result = bubble_sort(arr, n)
         time, memory = measure(bubble_sort, arr, n)
 
     
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
@@ -90,12 +86,11 @@ class TestBubbleSort(unittest.TestCase):
         expected_output = [42]
 
         # then
-        bubble_sort(arr, n)
-        print('Для массива с одним элементом:')
+        result = bubble_sort(arr, n)
         time, memory = measure(bubble_sort, arr, n)
 
         # when
-        self.assertEqual(arr, expected_output)
+        self.assertEqual(result, expected_output)
         self.assertLessEqual(time, self.expected_time)
         self.assertLessEqual(memory, self.expected_memory)
 
